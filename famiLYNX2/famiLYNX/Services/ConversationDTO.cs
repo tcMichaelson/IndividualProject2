@@ -5,6 +5,7 @@ using System.Web;
 
 namespace famiLYNX.Services {
     public class ConversationDTO {
+        public string Id { get; set; }  //This needs to go away.
         public string Topic { get; set; }
         public DateTime CreatedDate { get; set; }
         public MemberDTO CreatedBy { get; set; }

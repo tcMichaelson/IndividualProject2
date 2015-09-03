@@ -21,6 +21,13 @@ namespace famiLYNX.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public IDbSet<Member> Members { get; set; }
+        public IDbSet<Address> Addresses { get; set; }
+        public IDbSet<Conversation> Conversations { get; set; }
+        public IDbSet<Family> Families { get; set; }
+        public IDbSet<FamilyType> FamilyTypes { get; set; }
+        public IDbSet<Message> Messages { get; set; }
+        public IDbSet<OrgRole> OrgRoles { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -1,29 +1,27 @@
-namespace famiLYNX.Migrations
-{
+namespace famiLYNX.Migrations {
     using famiLYNX.Domain;
+    using famiLYNX.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<famiLYNX.Models.ApplicationDbContext>
-    {
-        public Configuration()
-        {
+    internal sealed class Configuration : DbMigrationsConfiguration<famiLYNX.Models.ApplicationDbContext> {
+        public Configuration() {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(famiLYNX.Models.ApplicationDbContext context)
-        {
+        protected override void Seed(famiLYNX.Models.ApplicationDbContext context) {
             context.FamilyTypes.AddOrUpdate(
-                   f => f.OrgType,
-                   new FamilyType { OrgType = "Family" },
-                   new FamilyType { OrgType = "Church" },
-                   new FamilyType { OrgType = "Roommates" },
-                   new FamilyType { OrgType = "Friends" },
-                   new FamilyType { OrgType = "Scout Troop" },
-                   new FamilyType { OrgType = "Business" }
-                   );
+                     f => f.OrgType,
+                     new FamilyType { OrgType = "Family" },
+                     new FamilyType { OrgType = "Church" },
+                     new FamilyType { OrgType = "Roommates" },
+                     new FamilyType { OrgType = "Friends" },
+                     new FamilyType { OrgType = "Scout Troop" },
+                     new FamilyType { OrgType = "Business" }
+                     );
 
 
             var famtypes = (from f in context.FamilyTypes select f).ToList();
@@ -38,24 +36,25 @@ namespace famiLYNX.Migrations
 
             var addressList = (from a in context.Addresses select a).ToList();
 
+
             context.Members.AddOrUpdate(
                 m => m.UserName,
-                new Member { FirstName = "Tom", LastName = "Michaelson", UserAddress = addressList[0], UserName = "tmichael" },
-                new Member { FirstName = "Jon", LastName = "Johnson", UserAddress = addressList[1], UserName = "jjohnson" },
-                new Member { FirstName = "Alex", LastName = "Gunderson", UserAddress = addressList[2], UserName = "agunderson" },
-                new Member { FirstName = "Bobby", LastName = "Masterson", UserAddress = addressList[3], UserName = "bmasterson" }
+                new Member { FirstName = "Tom", LastName = "Michaelson", UserAddress = addressList[0], UserName = "tmichael", Email = "a@a.com" },
+                new Member { FirstName = "Jon", LastName = "Johnson", UserAddress = addressList[1], UserName = "jjohnson", Email = "b@a.com" },
+                new Member { FirstName = "Alex", LastName = "Gunderson", UserAddress = addressList[2], UserName = "agunderson", Email = "c@a.com" },
+                new Member { FirstName = "Bobby", LastName = "Masterson", UserAddress = addressList[3], UserName = "bmasterson", Email = "d@a.com" }
                 );
 
             var memberList1 = (from m in context.Members orderby m.UserName ascending select m).Take(2).ToList();
             var memberList2 = (from m in context.Members orderby m.UserName ascending select m).Skip(2).Take(2).ToList();
 
-            context.Familys.AddOrUpdate(
+            context.Families.AddOrUpdate(
                 f => f.OrgName,
                 new Family { OrgName = "Stevenson", MemberList = new List<Member> { memberList1[0], memberList1[1] }, Type = famtypes[0] },
                 new Family { OrgName = "Michaelson", MemberList = new List<Member> { memberList2[0], memberList2[1] }, Type = famtypes[0] }
                 );
 
-            List<Family> familyList = (from c in context.Familys select c).ToList();
+            List<Family> familyList = (from c in context.Families select c).ToList();
 
             context.Messages.AddOrUpdate(
                 m => m.Text,
@@ -79,42 +78,43 @@ namespace famiLYNX.Migrations
                 new Conversation { Topic = "Dinner, Yo!", CreatedBy = memberList2[0], WhichFam = familyList[1], CreatedDate = messageList[6].TimeSubmitted, Recurs = false, IsEvent = false, MessageList = new List<Message> { messageList[6], messageList[7], messageList[8] } }
                 );
 
-            context.Roles.AddOrUpdate(
+            context.OrgRoles.AddOrUpdate(
                 r => r.RoleName,
-                new Role { RoleName = "Father", OrgType = famtypes[0] },
-                new Role { RoleName = "Mother", OrgType = famtypes[0] },
-                new Role { RoleName = "Grandmother", OrgType = famtypes[0] },
-                new Role { RoleName = "Grandfather", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Grandmother", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Grandfather", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Great Grandmother", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Great Grandfather", OrgType = famtypes[0] },
-                new Role { RoleName = "Sister", OrgType = famtypes[0] },
-                new Role { RoleName = "Brother", OrgType = famtypes[0] },
-                new Role { RoleName = "Aunt", OrgType = famtypes[0] },
-                new Role { RoleName = "Uncle", OrgType = famtypes[0] },
-                new Role { RoleName = "Granduncle", OrgType = famtypes[0] },
-                new Role { RoleName = "Grandaunt", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Granduncle", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Grandaunt", OrgType = famtypes[0] },
-                new Role { RoleName = "Daughter", OrgType = famtypes[0] },
-                new Role { RoleName = "Son", OrgType = famtypes[0] },
-                new Role { RoleName = "Granddaughter", OrgType = famtypes[0] },
-                new Role { RoleName = "Grandson", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Granddaughter", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Grandson", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Great Granddaughter", OrgType = famtypes[0] },
-                new Role { RoleName = "Great Great Grandson", OrgType = famtypes[0] },
-                new Role { RoleName = "Son-in-law", OrgType = famtypes[0] },
-                new Role { RoleName = "Daughter-in-law", OrgType = famtypes[0] },
-                new Role { RoleName = "Mother-in-law", OrgType = famtypes[0] },
-                new Role { RoleName = "Father-in-law", OrgType = famtypes[0] },
-                new Role { RoleName = "Cousin", OrgType = famtypes[0] },
-                new Role { RoleName = "Nephew", OrgType = famtypes[0] },
-                new Role { RoleName = "Neice", OrgType = famtypes[0] },
-                new Role { RoleName = "Grandnephew", OrgType = famtypes[0] },
-                new Role { RoleName = "Grandneice", OrgType = famtypes[0] }
+                new OrgRole { RoleName = "Father", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Mother", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Grandmother", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Grandfather", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Grandmother", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Grandfather", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Great Grandmother", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Great Grandfather", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Sister", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Brother", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Aunt", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Uncle", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Granduncle", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Grandaunt", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Granduncle", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Grandaunt", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Daughter", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Son", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Granddaughter", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Grandson", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Granddaughter", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Grandson", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Great Granddaughter", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Great Great Grandson", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Son-in-law", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Daughter-in-law", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Mother-in-law", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Father-in-law", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Cousin", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Nephew", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Neice", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Grandnephew", OrgType = famtypes[0] },
+                new OrgRole { RoleName = "Grandneice", OrgType = famtypes[0] }
                 );
+
         }
     }
 }
