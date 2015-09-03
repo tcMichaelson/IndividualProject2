@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using famiLYNX.Models;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace famiLYNX.Infrastructure {
     public class NinjectInfrastructureConfig {
         static public void RegisterInfrastructure(IKernel kernel) {
             kernel.Bind<IRepositoryG>().To<RepositoryG>();
-            kernel.Bind<DataContext>().ToSelf();
+            kernel.Bind <ApplicationDbContext>().ToSelf();
         }
     }
 }

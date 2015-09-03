@@ -1,4 +1,5 @@
-﻿using System;
+﻿using famiLYNX.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Validation;
@@ -9,9 +10,9 @@ using System.Web;
 namespace famiLYNX.Infrastructure {
     public class RepositoryG : IRepositoryG {
 
-        private DataContext _db;
+        private ApplicationDbContext _db;
 
-        public RepositoryG(DataContext db) {
+        public RepositoryG(ApplicationDbContext db) {
             _db = db;
         }
 
