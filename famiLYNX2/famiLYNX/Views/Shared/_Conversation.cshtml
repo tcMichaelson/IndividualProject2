@@ -1,0 +1,24 @@
+﻿@model famiLYNX.Presentation.Web.ConversationViewModel
+
+<div class="messagetitle">@Model.Conversation.Topic</div>
+<div class="closebox"></div>
+<div class="subscribeToggle"><img src="..\Content\checkmark.png" alt="going" onclick="" /></div>
+    @{
+    <div class="allMessages" height="@Model.Conversation.MessageList.Count()*35">
+        @{ 
+            if (Model.Conversation.MessageList.Count > 0) {
+                foreach (var msg in Model.Conversation.MessageList) {
+                    <p class="messagetext">@msg.Text<span style="font-style: italic; float: right">&nbsp;&nbsp;&ndash;&nbsp;&nbsp;@msg.Contributor.FirstName</span></p>
+                    }
+
+                }
+            }
+    </div>
+    using (Html.BeginForm("Create", "Messages")) {
+        @Html.Hidden("ConversationId", Model.Conversation.Id);
+        @Html.Hidden("FamilyId", Model.FamilyId);
+        @Html.Hidden("MemberUserName", Model.UserName);
+        @Html.TextBox("MessageText", "", new { @placeholder = "Add a Contibution", @class = "inputText" });
+        <input type="submit" value="GO" />
+    }
+}

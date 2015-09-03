@@ -1,0 +1,245 @@
+﻿@font-face {
+    font-family: 'Dense-Regular';
+    src: url('../fonts/Dense-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'nevis';
+    src: url('../fonts/nevis.ttf') format('truetype');
+}
+
+html body {
+
+	background-color: #47697E;
+
+}
+
+header h1 {
+	color: #FFCC33;
+	padding: 0px;
+	margin: 0px auto 0px 125px;
+	font-family: 'Dense-Regular';
+	font-size: 35pt;
+	letter-spacing: 15px;
+}
+
+li, a, input, form label {
+    font-family: 'Montserrat';
+    font-size: 9pt;
+    font-weight: normal;
+    color: lightgray;
+}
+
+input[type="submit"]{
+    color: black;
+}
+
+p, div, ul {
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	font-family: 'Montserrat';
+	font-size: 9pt;
+	font-weight: normal;
+}
+
+section#main {
+	margin-left: 150px;
+}
+
+nav {
+    margin-top: 5px;
+	height: 100%;
+	position: absolute;
+}
+
+a{
+	color: rgb(50,50,50);
+	display: block;
+    line-height: 30px;
+	padding-left: 20px;
+	width: 100%;
+}
+
+nav ul {
+    width: 150px;
+	list-style: none;
+}
+
+nav ul a:hover {
+	color: #FFCC33;
+	background-color: rgb(50,50,50);
+    text-decoration: none;
+}
+
+.NewMessageLink{
+    color: rgb(50,50,50);
+	display: block;
+    line-height: 30px;
+	padding-left: 20px;
+	width: 100%;
+}
+
+.NewMessageLink > p {
+    margin:0px;
+    padding: 0px;
+}
+
+.NewMessageForm {
+    color: #FFCC33;
+    font-family: 'Montserrat';
+	font-size: 9pt;
+    position: absolute;
+    top: 30px;
+    display: none;
+}
+
+.NewMessageLink:hover > .NewMessageForm {
+    display: block;
+    line-height: normal;
+}
+
+label {
+    margin-top: 5px;
+}
+
+input[type="checkbox"] {
+    float: right;
+}
+
+.NewMessgeForm input[type="text"]{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+    
+.NewMessageLink:hover {
+	color: #FFCC33;
+	background-color: rgb(50,50,50);
+    height: 320px;
+    width: 180px;
+}
+
+.NewMessageForm input[type="submit"]{
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* {
+	border: 1px solid red;
+}*/
+
+.subscribeToggle, .closebox {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+}
+
+.subscribeToggle {
+	text-align: center;
+	right: 30px;
+}
+
+.subscribeToggle img {
+	height: 100%;
+}
+
+.closebox{
+	right: 0px;
+}
+
+.boxthread {
+	background-color: #68889A;
+	border-left: 1px solid rgb(50,50,50);
+	border-top: 1px solid rgb(50,50,50);
+    color: #FCF1D1;
+	float: left;
+    margin: 5px 5px 10px 30px;
+    max-height: 550px;
+    position: relative;
+    width: 550px;
+}
+
+.boxthread .allMessages{
+    max-height: 500px;
+    overflow-y: auto;
+    position: absolute;
+    top: 30px;
+    width: 100%;
+}
+
+.allMessages:last-child{
+    position: absolute;
+
+}
+
+.boxthread form{
+    position: absolute;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+}
+
+.messagetext{
+    background-color: #47697E;
+    border: 1px black solid;
+    border-radius: 5px;
+	float: left;
+    clear:left;
+    margin: 5px 20px;
+    overflow: auto;
+    max-width: 90%;
+	padding: 2px 10px;
+	top: 30px;
+	position: relative;
+}
+
+.boxthread form .inputText {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 800px;
+}
+
+.boxthread form input[type="submit"]{
+    bottom: 0;
+    display: inline-block;
+    float: right;
+    height: 100%;
+    position: relative;
+    float: right;
+    width: 10%;
+}
+
+
+
+@media screen and (max-width: 990px){
+    nav {
+        left: -200px;
+    }
+
+    .boxthread{
+        margin-left: 0px;
+        width:100%;
+    }
+
+    section#main{
+        margin: 0px;
+    }
+}
+
+.messagetitle {
+	font-size: 12pt;
+    padding-top: 5px;
+	position: absolute;
+	height: 35px;
+	float: left;
+    left: 12px;
+}
+
+@media screen and (max-width: 1550px) {
+
+	.messagetitle {
+		width: 645px;
+	}
+}
