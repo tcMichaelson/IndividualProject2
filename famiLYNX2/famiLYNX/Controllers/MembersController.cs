@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace famiLYNX.Controllers
 {
+    [Authorize]
     public class MembersController : Controller
     {
         private Services.Services _service;
@@ -17,11 +18,9 @@ namespace famiLYNX.Controllers
         }
 
         // GET: Members
-        public ActionResult MyProfile(string userID)
+        public ActionResult MyProfile()
         {
-            //var myView = _repo.GetMember(userID);
-
-            return View();
+            return View(_service.GetMemberByUserName(User.Identity.Name));
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace famiLYNX.Controllers
 {
+    [Authorize]
     public class ConversationsController : Controller
     {
         private Services.Services _service;
@@ -58,7 +59,7 @@ namespace famiLYNX.Controllers
             {
                 return View();
             }
-            return RedirectToAction("Index", "Familys", new { userID = model.UserName, famName = _service.GetFamilyNameById(model.famId) });  //View model should
+            return RedirectToAction("Index", "Familys", new { userID = model.UserName, famName = _service.GetFamilyNameById(model.FamId) });  //View model should
                                                                                                                                               //not have id
         }
 

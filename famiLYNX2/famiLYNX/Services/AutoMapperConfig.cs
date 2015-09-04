@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using famiLYNX.Domain;
+using famiLYNX.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,8 @@ namespace famiLYNX.Services {
                 Mapper.CreateMap<Family, FamilyDTO>();
                 Mapper.CreateMap<FamilyTypeDTO, FamilyType>();
                 Mapper.CreateMap<FamilyType, FamilyTypeDTO>();
-                Mapper.CreateMap<Member, MemberDTO>();
-                Mapper.CreateMap<MemberDTO, Member>();
+                Mapper.CreateMap<ApplicationUser, ApplicationUserDTO>();
+                Mapper.CreateMap<ApplicationUserDTO, ApplicationUser>();
                 Mapper.CreateMap<Message, MessageDTO>();
                 Mapper.CreateMap<MessageDTO, Message>();
             }

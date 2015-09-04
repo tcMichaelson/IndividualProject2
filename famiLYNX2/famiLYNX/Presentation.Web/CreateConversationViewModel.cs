@@ -7,7 +7,7 @@ using System.Web;
 
 namespace famiLYNX.Presentation.Web {
     public class CreateConversationViewModel {
-        public int famId { get; set; }  //no id in vm.  Added back in so it would work.
+        public int FamId { get; set; }  //no id in vm.  Added back in so it would work.
         [Required]
         public string NewTopic { get; set; }
         public string FirstMessage { get; set; }
@@ -15,6 +15,5 @@ namespace famiLYNX.Presentation.Web {
         public bool IsEvent { get; set; }
         public bool Recurs { get; set; }
         public string UserName { get; set; }
-        public int FamId { get; set; }
     }
 }

@@ -37,21 +37,21 @@ namespace famiLYNX.Migrations {
             var addressList = (from a in context.Addresses select a).ToList();
 
 
-            context.Members.AddOrUpdate(
+            context.Users.AddOrUpdate(
                 m => m.UserName,
-                new Member { FirstName = "Tom", LastName = "Michaelson", UserAddress = addressList[0], UserName = "tmichael", Email = "a@a.com" },
-                new Member { FirstName = "Jon", LastName = "Johnson", UserAddress = addressList[1], UserName = "jjohnson", Email = "b@a.com" },
-                new Member { FirstName = "Alex", LastName = "Gunderson", UserAddress = addressList[2], UserName = "agunderson", Email = "c@a.com" },
-                new Member { FirstName = "Bobby", LastName = "Masterson", UserAddress = addressList[3], UserName = "bmasterson", Email = "d@a.com" }
+                new ApplicationUser { FirstName = "Tom", LastName = "Michaelson", UserAddress = addressList[0], UserName = "tmichael", Email = "a@a.com" },
+                new ApplicationUser { FirstName = "Jon", LastName = "Johnson", UserAddress = addressList[1], UserName = "jjohnson", Email = "b@a.com" },
+                new ApplicationUser { FirstName = "Alex", LastName = "Gunderson", UserAddress = addressList[2], UserName = "agunderson", Email = "c@a.com" },
+                new ApplicationUser { FirstName = "Bobby", LastName = "Masterson", UserAddress = addressList[3], UserName = "bmasterson", Email = "d@a.com" }
                 );
 
-            var memberList1 = (from m in context.Members orderby m.UserName ascending select m).Take(2).ToList();
-            var memberList2 = (from m in context.Members orderby m.UserName ascending select m).Skip(2).Take(2).ToList();
+            var memberList1 = (from m in context.Users orderby m.UserName ascending select m).Take(2).ToList();
+            var memberList2 = (from m in context.Users orderby m.UserName ascending select m).Skip(2).Take(2).ToList();
 
             context.Families.AddOrUpdate(
                 f => f.OrgName,
-                new Family { OrgName = "Stevenson", MemberList = new List<Member> { memberList1[0], memberList1[1] }, Type = famtypes[0] },
-                new Family { OrgName = "Michaelson", MemberList = new List<Member> { memberList2[0], memberList2[1] }, Type = famtypes[0] }
+                new Family { OrgName = "Stevenson", MemberList = new List<ApplicationUser> { memberList1[0], memberList1[1] }, Type = famtypes[0] },
+                new Family { OrgName = "Michaelson", MemberList = new List<ApplicationUser> { memberList2[0], memberList2[1] }, Type = famtypes[0] }
                 );
 
             List<Family> familyList = (from c in context.Families select c).ToList();

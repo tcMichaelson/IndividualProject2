@@ -1,4 +1,4 @@
-﻿@model famiLYNX.Models.Member
+﻿@model famiLYNX.Services.ApplicationUserDTO
 
 @{
     ViewBag.Title = "Profile";
@@ -8,39 +8,80 @@
     for adding themselves to a family or creating a new family.  That
     will make them the administrator/creator of that family.  Do I even
     need someone to be the administrator?  I think the only thing I need
-    a particular user to have control over is a conversation that is an 
+    a particular user to have control over is a conversation that is an
     event.-->
-<h2>My Profile</h2>
+<header>
+    <h1>My Profile</h1>
+</header>
+<section id="main">
+    <div class="boxthread left" style="position: absolute; height: 205px;">
+        <h4 class="messagetitle">@Html.DisplayFor(model => model.UserName)</h4>
+        @Html.BeginForm("sdgf", "Account", FormMethod.Post, htmlAttributes: new { @style = "position: relative;" }){
+        <dl style="position: absolute;" class="dl-horizontal">
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+            <dd style="position: relative;">
+                @Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @class = "disabled" })
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dt style="position: relative;">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dd style="position: relative">
+                @Html.TextBoxFor(model => model.FirstName, htmlAttributes: new { @class = "disabled" })
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dt style="position: relative">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dd style="position: relative">
+                @Html.TextBoxFor(model => model.LastName, htmlAttributes: new { @class = "disabled" })
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt style="position: relative">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd style="position: relative">
+                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "disabled" })
+            </dd>
+
+            <dt style="position: relative">
+                @Html.DisplayNameFor(model => model.UserAddress)
+            </dt>
+
+            <dd style="position: relative">
+                @Html.TextBoxFor(model => model.UserAddress, htmlAttributes: new { @class = "disabled" })
+            </dd>
+
+        </dl>
+        <input id="EditProfile" type="button" style="bottom: 0px;" value="Edit Profile" class="btn" onclick="AllowEdits()" />
+        }
+    </div>
+</section>
+<script type="text/javascript" >
+
+    function AllowEdits() {
+        var button = document.getElementById("EditProfile");
+        var elems = document.getElementsByTagName("dd");
+        if (button.value = "Edit Profile"){
+            for (var i = 0; i < elems.length; i++) {
+                elems[i].setAttribute("class", "enabled");
+            }
+            button.value = "Save Changes";
+        }else{
+            for (var i = 0; i < elems.length; i++) {
+                elems[i].setAttribute("class", "disabled");
+            }
+        }
+        button.value = "Edit Profile";
+        
+        button = null;
+        elems = null;
+    }
+</script>

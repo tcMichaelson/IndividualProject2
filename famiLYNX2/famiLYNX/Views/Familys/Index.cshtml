@@ -12,7 +12,8 @@
             boxHeight = ((Model.ConversationList[i].MessageList.Count() * 35) + 60).ToString();
             if (i % 2 == 0) { side = "left"; } else { side = "right"; }
             <div class="boxthread @side" style="height: @(boxHeight)px;">
-                @Html.Action("DisplayConversation", "Conversations", new { conversationId = Model.ConversationList[i].Id, familyId = Model.FamilyId, familyName = Model.FamilyName, userName = Model.UserName })
+           
+                     @Html.Action("DisplayConversation", "Conversations", new { conversationId = Model.ConversationList[i].Id, familyId = Model.FamilyId, familyName = Model.FamilyName, userName = Model.UserName })
             </div>
         }
     }

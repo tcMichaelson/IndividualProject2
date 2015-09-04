@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace famiLYNX.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         private Services.Services _service;
