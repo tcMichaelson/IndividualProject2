@@ -14,55 +14,34 @@
     <h1>My Profile</h1>
 </header>
 <section id="main">
-    <div class="boxthread left" style="position: absolute; height: 205px;">
-        <h4 class="messagetitle">@Html.DisplayFor(model => model.UserName)</h4>
-        @Html.BeginForm("sdgf", "Account", FormMethod.Post, htmlAttributes: new { @style = "position: relative;" }){
-        <dl style="position: absolute;" class="dl-horizontal">
+    <form class="form-horizontal">
+        <fieldset>
+        <legend>@Html.DisplayFor(model => model.UserName)</legend>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.UserName)
-            </dt>
-
-            <dd style="position: relative;">
-                @Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @class = "disabled" })
-            </dd>
-
-            <dt style="position: relative;">
+            <div class="form-group">
                 @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.FirstName)
+                </div>
+            </div>
 
-            <dd style="position: relative">
-                @Html.TextBoxFor(model => model.FirstName, htmlAttributes: new { @class = "disabled" })
-            </dd>
-
-            <dt style="position: relative">
+            <div class="form-group">
                 @Html.DisplayNameFor(model => model.LastName)
-            </dt>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.LastName)
+                </div>
+            </div>
 
-            <dd style="position: relative">
-                @Html.TextBoxFor(model => model.LastName, htmlAttributes: new { @class = "disabled" })
-            </dd>
-
-            <dt style="position: relative">
+            <div class="form-group">
                 @Html.DisplayNameFor(model => model.Email)
-            </dt>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(model => model.Email)
+                </div>
+            </div>
 
-            <dd style="position: relative">
-                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "disabled" })
-            </dd>
-
-            <dt style="position: relative">
-                @Html.DisplayNameFor(model => model.UserAddress)
-            </dt>
-
-            <dd style="position: relative">
-                @Html.TextBoxFor(model => model.UserAddress, htmlAttributes: new { @class = "disabled" })
-            </dd>
-
-        </dl>
+        </fieldset>
         <input id="EditProfile" type="button" style="bottom: 0px;" value="Edit Profile" class="btn" onclick="AllowEdits()" />
-        }
-    </div>
+    </form>
 </section>
 <script type="text/javascript" >
 

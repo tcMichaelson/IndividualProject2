@@ -22,8 +22,7 @@ namespace famiLYNX {
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/FamilyIndexStyles.css"));
+                      "~/Content/site.css"));
         }
     }
 }

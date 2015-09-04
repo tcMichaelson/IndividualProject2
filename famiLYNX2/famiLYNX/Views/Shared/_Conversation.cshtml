@@ -1,10 +1,10 @@
 ﻿@model famiLYNX.Presentation.Web.ConversationViewModel
 
-<h4>@Model.Conversation.Topic</h4>
-<div class="closebox"></div>
-<div class="subscribeToggle"><img src="..\Content\checkmark.png" alt="going" onclick="" /></div>
+<div class="panel panel-heading">@Model.Conversation.Topic<span class="closebox"></span>
+<span class="subscribeToggle"><img src="..\Content\checkmark.png" alt="going" onclick="" /></span></div>
+
     @{
-    <div class="allMessages" height="@Model.Conversation.MessageList.Count()*35">
+    <div class="panel panel-content allMessages" height="@Model.Conversation.MessageList.Count()*35">
         @{ 
             if (Model.Conversation.MessageList.Count > 0) {
                 foreach (var msg in Model.Conversation.MessageList) {
