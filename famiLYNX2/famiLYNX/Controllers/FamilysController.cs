@@ -18,12 +18,15 @@ namespace famiLYNX.Controllers
 
         public ActionResult Index(string userID, string famName) {
             FamilyViewModel vm = _service.GetConversations(userID, famName);
-            if (vm.ConversationList != null) {
-                return View(vm);
-            } else {
-                return RedirectToAction("Index", "Login");
-            }
+            return View(vm);
+        }
 
+        [HttpPost]
+        public ActionResult Create(string orgName, string famUserName="") {
+            if(_service.CreateFamily(orgName, User.Identity.Name, famUserName)) {
+                return RedirectToAction("MyProfile", "Members");
+            }
+            return RedirectToAction("MyProfile", "Members");
         }
 
         public ActionResult IndexNewConversation(string userID, string famName) {

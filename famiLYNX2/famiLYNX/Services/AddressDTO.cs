@@ -21,6 +21,7 @@ namespace famiLYNX.Services {
     }
 
     public enum StName {
+        None,
         Alabama,
         Alaska,
         Arizona,

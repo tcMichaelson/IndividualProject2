@@ -1,0 +1,74 @@
+﻿@model famiLYNX.Presentation.Web.EditProfileViewModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<header class="body-content">
+    <h1>My Profile</h1>
+</header>
+<section id="main" class="body-content">
+    <div class="well well-lg col-lg-6 bs-component" style="margin-left: 200px;">
+        <form action="/Members/MyProfileEdit" method="post" class="form-horizontal">
+            <fieldset>
+                <legend>@Model.User.UserName</legend>
+
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">First Name:</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.User.FirstName, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">Last Name:</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.User.LastName, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">E-mail:</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.User.Email, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <br />
+                &nbsp;
+                <br />
+
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">Address:</label>
+                    <table>
+                        <tr>
+                            <td class="col-md-3" style="padding: 0px;">
+                                <div class="list-group">
+                                    <label class="control-label list-group-item" style="border: none;">Street:</label>
+                                    <label class="control-label list-group-item" style="border: none;">City:</label>
+                                    <label class="control-label list-group-item" style="border: none;">State:</label>
+                                    <label class="control-label list-group-item" style="border: none;">Zip Code:</label>
+                                </div>
+                            </td>
+                            <td class="col-md-9" style="padding-left: 0px;">
+                                <div class="list-group">
+                                    @Html.TextBoxFor(m => m.Street, htmlAttributes: new { @class = "list-group-item"})
+                                    @Html.TextBoxFor(m => m.City, htmlAttributes: new { @class = "list-group-item" })
+                                    @Html.EnumDropDownListFor(m => m.State, htmlAttributes: new { @class = "list-group-item" })
+                                    @Html.TextBoxFor(m => m.Zip, htmlAttributes: new { @class = "list-group-item" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="form-group-sm">
+                    <div class="col-md-9 col-md-offset-3">
+                        @Html.HiddenFor(m => m.User.UserName)
+                        <input id="EditProfile" type="submit" style="bottom: 0px;" value="Save Changes" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>

@@ -4,63 +4,109 @@
     ViewBag.Title = "Profile";
 }
 
-<!-- This view will show the user their information as well as options
-    for adding themselves to a family or creating a new family.  That
-    will make them the administrator/creator of that family.  Do I even
-    need someone to be the administrator?  I think the only thing I need
-    a particular user to have control over is a conversation that is an
-    event.-->
-<header>
+<header class="body-content">
     <h1>My Profile</h1>
 </header>
-<section id="main">
-    <form class="form-horizontal">
-        <fieldset>
-        <legend>@Html.DisplayFor(model => model.UserName)</legend>
+<section id="main" class="body-content">
+    <div class="well well-lg col-lg-6 bs-component" style="margin-left: 200px;">
+        <form action="/Members/MyProfileEdit" method="get" class="form-horizontal">
+            <fieldset>
+                <legend>@Model.UserName</legend>
 
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.FirstName)
-                <div class="col-lg-10">
-                    @Html.TextBoxFor(model => model.FirstName)
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">First Name</label>
+                    <div class="col-md-9">
+                        <label id="firstName" class="control-label">@Model.FirstName</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.LastName)
-                <div class="col-lg-10">
-                    @Html.TextBoxFor(model => model.LastName)
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">Last Name:</label>
+                    <div class="col-md-9">
+                        <label id="lastName" class="control-label">@Model.LastName</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.Email)
-                <div class="col-lg-10">
-                    @Html.TextBoxFor(model => model.Email)
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">E-mail:</label>
+                    <div class="col-md-9">
+                        <label id="email" class="control-label">@Model.Email</label>
+                    </div>
                 </div>
-            </div>
+                
+                <br />
+                &nbsp;
+                <br />
 
-        </fieldset>
-        <input id="EditProfile" type="button" style="bottom: 0px;" value="Edit Profile" class="btn" onclick="AllowEdits()" />
-    </form>
+                <div class="form-group-sm">
+                    <label class="col-md-3 control-label">Address:</label>
+                    <table>
+                        <tr>
+                            <td class="col-md-3" style="padding: 0px;">
+                                <div class="list-group">
+                                    <label class="control-label list-group-item" style="border: none;">Street:</label>
+                                    <label class="control-label list-group-item" style="border: none;">City:</label>
+                                    <label class="control-label list-group-item" style="border: none;">State:</label>
+                                    <label class="control-label list-group-item" style="border: none;">Zip Code:</label>
+                                </div>
+                            </td>
+                            <td class="col-md-9" style="padding-left: 0px;">
+                                <div class="list-group">
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.Street</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.City</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.State</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.Zip</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="form-group-sm">
+                    <div class="col-md-9 col-md-offset-3">
+                        @Html.HiddenFor(m => m.UserName)
+                        <input id="EditProfile" type="submit" value="Edit Profile" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </section>
-<script type="text/javascript" >
 
-    function AllowEdits() {
-        var button = document.getElementById("EditProfile");
-        var elems = document.getElementsByTagName("dd");
-        if (button.value = "Edit Profile"){
-            for (var i = 0; i < elems.length; i++) {
-                elems[i].setAttribute("class", "enabled");
-            }
-            button.value = "Save Changes";
-        }else{
-            for (var i = 0; i < elems.length; i++) {
-                elems[i].setAttribute("class", "disabled");
-            }
+<!----------------------------------Need User Name Pop Up------------------------------------>
+<div class="modal" id="modal-one">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------------------Need User Name Pop Up------------------------------------>
+
+<nav>
+    <ul>
+        @foreach (var fam in Model.Families) {
+            <li>@Html.ActionLink(fam.OrgName, "Index", "Familys", new { userID = Model.UserName, famName = fam.OrgName }, htmlAttributes: new { })</li>
         }
-        button.value = "Edit Profile";
-        
-        button = null;
-        elems = null;
-    }
-</script>
+        <li class="NewMessageLink">
+            <p>Start A Family</p>
+            @using (@Html.BeginForm("Create", "Familys", FormMethod.Post, htmlAttributes: new { @class = "NewMessageForm" })) {
+                @Html.Label("What is the family name?")
+                @Html.TextBox("OrgName", "", htmlAttributes: new { placeholder = "This is where your family name goes" })
+                        <input type="submit" , value="Start this Family" href="#modal-one" />
+            }
+        </li>
+        <li><a href="#">Log Off</a></li>
+    </ul>
+</nav>
+

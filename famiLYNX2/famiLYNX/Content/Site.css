@@ -22,3 +22,44 @@ select,
 textarea {
     max-width: 280px;
 }
+
+header, body{
+    max-width: 1200px;
+    /*background-color:#47697E;*/
+}
+
+h1{
+    color: #FFCC33;
+    margin-left: 150px;
+}
+
+body{
+    
+}
+
+/*.well-lg {
+    background-color: #68889A;
+    color: #FCF1D1;
+}*/
+
+.well-lg .btn {
+    color: black;
+    margin: 0px auto;
+
+}
+
+legend {
+    /*color: #FCF1D1;*/
+}
+
+.list-group-item {
+    border: 1px solid #cccccc;
+}
+
+.control-label.list-group-item {
+    border: none;
+}
+
+.form-group-sm .list-group-item{
+    padding: 5px 15px;
+}

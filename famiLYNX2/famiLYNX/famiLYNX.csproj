@@ -206,21 +206,9 @@
     <Compile Include="Infrastructure\IRepositoryG.cs" />
     <Compile Include="Infrastructure\NinjectInfrastructureConfig.cs" />
     <Compile Include="Infrastructure\RepositoryG.cs" />
-    <Compile Include="Migrations\201509030215062_initial.cs" />
-    <Compile Include="Migrations\201509030215062_initial.Designer.cs">
-      <DependentUpon>201509030215062_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509030313134_inheritedApplicationUser.cs" />
-    <Compile Include="Migrations\201509030313134_inheritedApplicationUser.Designer.cs">
-      <DependentUpon>201509030313134_inheritedApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509030344279_addedIDBSets.cs" />
-    <Compile Include="Migrations\201509030344279_addedIDBSets.Designer.cs">
-      <DependentUpon>201509030344279_addedIDBSets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509031418301_removedMembersFromDBContext.cs" />
-    <Compile Include="Migrations\201509031418301_removedMembersFromDBContext.Designer.cs">
-      <DependentUpon>201509031418301_removedMembersFromDBContext.cs</DependentUpon>
+    <Compile Include="Migrations\201509051912428_initial.cs" />
+    <Compile Include="Migrations\201509051912428_initial.Designer.cs">
+      <DependentUpon>201509051912428_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -229,6 +217,7 @@
     <Compile Include="Presentation.Web\ConversationViewModel.cs" />
     <Compile Include="Presentation.Web\CreateConversationViewModel.cs" />
     <Compile Include="Presentation.Web\CreateMessageViewModel.cs" />
+    <Compile Include="Presentation.Web\EditProfileViewModel.cs" />
     <Compile Include="Presentation.Web\FamilyViewModel.cs" />
     <Compile Include="Presentation.Web\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -305,6 +294,7 @@
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Familys\Index.cshtml" />
     <Content Include="Views\Members\MyProfile.cshtml" />
+    <Content Include="Views\Members\MyProfileEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,17 +308,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509030215062_initial.resx">
-      <DependentUpon>201509030215062_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509030313134_inheritedApplicationUser.resx">
-      <DependentUpon>201509030313134_inheritedApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509030344279_addedIDBSets.resx">
-      <DependentUpon>201509030344279_addedIDBSets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509031418301_removedMembersFromDBContext.resx">
-      <DependentUpon>201509031418301_removedMembersFromDBContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509051912428_initial.resx">
+      <DependentUpon>201509051912428_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
