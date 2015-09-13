@@ -22,7 +22,7 @@
     <ul>
         <li class="NewMessageLink">
             <p>Conversation Starter</p>
-                    @using (@Html.BeginForm("Create", "Conversations",FormMethod.Post, htmlAttributes: new { @class="NewMessageForm" })) {
+                    @using (@Html.BeginForm("Create", "Conversations", FormMethod.Post, htmlAttributes: new { @class="NewMessageForm" })) {
                         @Html.Label("What are we going to talk about?")
                         @Html.TextBox("NewTopic", "", htmlAttributes: new { placeholder = "This is where the topic goes" })
                         <label>

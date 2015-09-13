@@ -18,20 +18,11 @@ namespace famiLYNX.Controllers
 
         // GET: Members
         public ActionResult MyProfile() {
-            return View(_service.GetMemberByUserName(User.Identity.Name));
+            return View(_service.GetProfileViewModel(User.Identity.Name));
         }
 
         public ActionResult MyProfileEdit() {
-            var address = _service.GetUserAddress(User.Identity.Name);
-            var user = _service.GetMemberByUserName(User.Identity.Name);
-            EditProfileViewModel vm = new EditProfileViewModel() {
-                City = address.City,
-                State = address.State,
-                Street = address.Street,
-                Zip = address.Zip,
-                User = user
-            };
-            return View(vm);
+            return View(_service.GetEditProfileViewModel(User.Identity.Name));
         }
 
         [HttpPost]

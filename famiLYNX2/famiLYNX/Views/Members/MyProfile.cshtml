@@ -1,4 +1,4 @@
-﻿@model famiLYNX.Services.ApplicationUserDTO
+﻿@model famiLYNX.Presentation.Web.ProfileViewModel
 
 @{
     ViewBag.Title = "Profile";
@@ -11,26 +11,26 @@
     <div class="well well-lg col-lg-6 bs-component" style="margin-left: 200px;">
         <form action="/Members/MyProfileEdit" method="get" class="form-horizontal">
             <fieldset>
-                <legend>@Model.UserName</legend>
+                <legend>@Model.User.UserName</legend>
 
                 <div class="form-group-sm">
                     <label class="col-md-3 control-label">First Name</label>
                     <div class="col-md-9">
-                        <label id="firstName" class="control-label">@Model.FirstName</label>
+                        <label id="firstName" class="control-label">@Model.User.FirstName</label>
                     </div>
                 </div>
 
                 <div class="form-group-sm">
                     <label class="col-md-3 control-label">Last Name:</label>
                     <div class="col-md-9">
-                        <label id="lastName" class="control-label">@Model.LastName</label>
+                        <label id="lastName" class="control-label">@Model.User.LastName</label>
                     </div>
                 </div>
 
                 <div class="form-group-sm">
                     <label class="col-md-3 control-label">E-mail:</label>
                     <div class="col-md-9">
-                        <label id="email" class="control-label">@Model.Email</label>
+                        <label id="email" class="control-label">@Model.User.Email</label>
                     </div>
                 </div>
                 
@@ -52,10 +52,10 @@
                             </td>
                             <td class="col-md-9" style="padding-left: 0px;">
                                 <div class="list-group">
-                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.Street</label>
-                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.City</label>
-                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.State</label>
-                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.UserAddress.Zip</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.User.UserAddress.Street</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.User.UserAddress.City</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.User.UserAddress.State</label>
+                                    <label class="control-label list-group-item" style="text-align: left; border: none;">@Model.User.UserAddress.Zip</label>
                                 </div>
                             </td>
                         </tr>
@@ -64,7 +64,7 @@
 
                 <div class="form-group-sm">
                     <div class="col-md-9 col-md-offset-3">
-                        @Html.HiddenFor(m => m.UserName)
+                        @Html.HiddenFor(m => m.User.UserName)
                         <input id="EditProfile" type="submit" value="Edit Profile" class="btn btn-primary" />
                     </div>
                 </div>
@@ -73,40 +73,59 @@
     </div>
 </section>
 
-<!----------------------------------Need User Name Pop Up------------------------------------>
-<div class="modal" id="modal-one">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body…</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!----------------------------------Need User Name Pop Up------------------------------------>
-
 <nav>
+
+    <!---------------  Listing Existing Familys for this User ---------------->
     <ul>
-        @foreach (var fam in Model.Families) {
-            <li>@Html.ActionLink(fam.OrgName, "Index", "Familys", new { userID = Model.UserName, famName = fam.OrgName }, htmlAttributes: new { })</li>
+        @foreach (var fam in Model.Familys) {
+            <li>@Html.ActionLink(fam.OrgName, "Index", "Familys", new { userID = Model.User.UserName, famName = fam.OrgName }, htmlAttributes: new { })</li>
         }
         <li class="NewMessageLink">
             <p>Start A Family</p>
             @using (@Html.BeginForm("Create", "Familys", FormMethod.Post, htmlAttributes: new { @class = "NewMessageForm" })) {
                 @Html.Label("What is the family name?")
                 @Html.TextBox("OrgName", "", htmlAttributes: new { placeholder = "This is where your family name goes" })
-                        <input type="submit" , value="Start this Family" href="#modal-one" />
+                        <input type="submit" , value="Start this Family" class="btn btn-default" />
+            }
+        </li>
+        <li class="NewMessageLink">
+            <p>Join A Family</p>
+            @using (@Html.BeginForm("Plea", "Familys", FormMethod.Post, htmlAttributes: new { @class = "NewMessageForm" })) {
+                @Html.Label("Enter the Family Username")
+                @Html.TextBox("famUserName", "", htmlAttributes: new { placeholder = "This is where the family username goes" })
+                <input type="submit", value="Join this Family" class="btn btn-default" />
             }
         </li>
         <li><a href="#">Log Off</a></li>
     </ul>
-</nav>
+    <!---------------  Listing Existing Familys for this User ---------------->
 
+    <!---------------  Listing Exiting Invites/Pleas for this User ---------------->
+    <ul>
+    
+    @if (Model.User.ToApprove != null) {
+        foreach (var item in Model.User.ToApprove) {
+            if (item.Approved == famiLYNX.Services.Response.None && item.UserResponse == famiLYNX.Services.Response.None) {
+                <li>
+                    @item.EmailAddress has been invited to @item.Family.FamilyUserName by @item.Inviter
+                    @Html.ActionLink("Approve", "ApprovePlea", "Familys", new { Email = @item.EmailAddress, FamilyUserName = @item.Family.FamilyUserName }, htmlAttributes: new { })
+                    @Html.ActionLink("Deny", "DenyPlea", "Familys", new { Email = @item.EmailAddress, FamilyUserName = @item.Family.FamilyUserName }, htmlAttributes: new { })
+                </li>
+            } else if (item.UserResponse == famiLYNX.Services.Response.Yes) {
+                <li>
+                    @item.EmailAddress has requested to be added to @item.Family.FamilyUserName
+                    @Html.ActionLink("Approve", "ApprovePlea", "Familys", new { Email = @item.EmailAddress, FamilyUserName = @item.Family.FamilyUserName }, htmlAttributes: new { })
+                    @Html.ActionLink("Deny", "DenyPlea", "Familys", new { Email = @item.EmailAddress, FamilyUserName = @item.Family.FamilyUserName }, htmlAttributes: new { })
+                </li>
+            } else if (item.Approved == famiLYNX.Services.Response.Yes) {
+                <li>
+                    @item.EmailAddress has not responded to your invite for @item.Family.FamilyUserName
+                    @Html.ActionLink("Remove", "DenyPlea", "Familys", new { Email = @item.EmailAddress, FamilyUserName = @item.Family.FamilyUserName }, htmlAttributes: new { })
+                </li>
+            }
+        }
+    }
+
+    </ul>
+    <!---------------  Listing Exiting Invites/Pleas for this User ---------------->
+</nav>

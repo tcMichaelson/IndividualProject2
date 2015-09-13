@@ -23,7 +23,7 @@ namespace famiLYNX.Infrastructure {
         public T Find<T>(params object[] keyValues) where T : class {
             return _db.Set<T>().Find(keyValues);
         }
-
+        
         public void Add<T>(T entityToCreate) where T : class {
             _db.Set<T>().Add(entityToCreate);
         }

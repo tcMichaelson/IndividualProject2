@@ -13,7 +13,7 @@ namespace famiLYNX.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509051912428_initial"; }
+            get { return "201509100148119_initial"; }
         }
         
         string IMigrationMetadata.Source

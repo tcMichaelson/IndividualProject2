@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "famiLYNX", "famiLYNX\famiLYNX.csproj", "{6D207988-120F-4BCA-8712-6EA5D20DBF15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "famiLYNX.Tests", "famiLYNX.Tests\famiLYNX.Tests.csproj", "{6E049677-EE79-42D7-AC10-FB62EBF4582B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6D207988-120F-4BCA-8712-6EA5D20DBF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D207988-120F-4BCA-8712-6EA5D20DBF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D207988-120F-4BCA-8712-6EA5D20DBF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E049677-EE79-42D7-AC10-FB62EBF4582B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E049677-EE79-42D7-AC10-FB62EBF4582B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E049677-EE79-42D7-AC10-FB62EBF4582B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E049677-EE79-42D7-AC10-FB62EBF4582B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

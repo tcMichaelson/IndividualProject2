@@ -449,7 +449,7 @@ namespace famiLYNX.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("MyProfile", "Members");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

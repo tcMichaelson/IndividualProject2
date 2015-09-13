@@ -1,4 +1,5 @@
-﻿using famiLYNX.Presentation.Web;
+﻿using famiLYNX.Models;
+using famiLYNX.Presentation.Web;
 using famiLYNX.Services;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace famiLYNX.Controllers
         }
 
         public ActionResult Index(string userID, string famName) {
-            FamilyViewModel vm = _service.GetConversations(userID, famName);
+            FamilyViewModel vm = _service.PopulateFamilyViewModel(userID, famName);
             return View(vm);
         }
 
@@ -31,6 +32,22 @@ namespace famiLYNX.Controllers
 
         public ActionResult IndexNewConversation(string userID, string famName) {
             return View();
+        }
+
+        public ActionResult Plea(string famUserName) {
+            var currName = _service.GetMemberByUserName(User.Identity.Name);
+            string response = _service.ManageInviteOrPleas(famUserName, currName.Email, User.Identity.Name, Services.Response.None, Services.Response.Yes);            
+            return RedirectToAction("MyProfile","Members", new { message = response });
+        }
+        
+        public ActionResult ApprovePlea(ManagePleasViewModel model) {
+            string response = _service.ManageInviteOrPleas(model.FamilyUserName, model.Email, User.Identity.Name,Services.Response.Yes);
+            return RedirectToAction("MyProfile", "Members", new { message = response } );
+        }
+
+        public ActionResult DenyPlea(ManagePleasViewModel model) {
+            string response = _service.ManageInviteOrPleas(model.FamilyUserName, model.Email, User.Identity.Name, Services.Response.No, Services.Response.No);
+            return RedirectToAction("MyProfile", "Members", new { message = response });
         }
 
     }

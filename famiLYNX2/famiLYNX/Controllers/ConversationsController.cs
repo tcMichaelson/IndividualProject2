@@ -49,18 +49,24 @@ namespace famiLYNX.Controllers
         [HttpPost]
         public ActionResult Create(CreateConversationViewModel model)
         {
-            try {
-                // TODO: Add insert logic here
-                if (ModelState.IsValid) {
-                    _service.CreateConversation(model);
-                }
-            }
-            catch
-            {
-                return View();
+            //try {
+            //    // TODO: Add insert logic here
+            //    if (ModelState.IsValid) {
+            //        _service.CreateConversation(model);
+            //    }
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+            //return RedirectToAction("Index", "Familys", new { userID = model.UserName, famName = _service.GetFamilyNameById(model.FamId) });  //View model should
+            //                                                                                                                                  //not have id
+
+            if (ModelState.IsValid) {
+                _service.CreateConversation(model);
             }
             return RedirectToAction("Index", "Familys", new { userID = model.UserName, famName = _service.GetFamilyNameById(model.FamId) });  //View model should
-                                                                                                                                              //not have id
+
         }
 
         // GET: Conversations/Edit/5
